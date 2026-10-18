@@ -1,0 +1,31 @@
+-- BOMB HUB FLOATING LOGO
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+local player = Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "BombHubFloatingLogo"
+gui.ResetOnSpawn = false
+gui.Parent = game:GetService("CoreGui")
+
+local logo = Instance.new("ImageButton")
+logo.Name = "BombLogo"
+logo.Size = UDim2.fromOffset(58, 58)
+logo.Position = UDim2.new(0, 20, 0.4, 0)
+logo.BackgroundTransparency = 1
+logo.Image = "rbxassetid://YOUR_BOMB_IMAGE_ID"
+logo.Active = true
+logo.Draggable = true
+logo.Parent = gui
+
+local opened = true
+
+logo.Activated:Connect(function()
+    opened = not opened
+
+    if opened then
+        Window:Show()
+    else
+        Window:Hide()
+    end
+end)
