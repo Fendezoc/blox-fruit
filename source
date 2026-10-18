@@ -2014,7 +2014,7 @@ spawn(function()
 end)
 
 ChestBP = Tabs.Main:AddToggle("Toggle_Auto_Chest_Bypass", {
-    Title = "Auto Chest Bypass", 
+    Title = "Tự động farm Chest Bypass", 
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -2112,7 +2112,7 @@ end)
 Tabs.Main:AddSection("Collect Berry")
 
 Berry = Tabs.Main:AddToggle("Toggle_Auto_Farm_Berry", {
-Title = "Auto Farm Berry", 
+Title = "Tự động Farm Berry", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -2150,7 +2150,7 @@ end)
 
 
 BerryH = Tabs.Main:AddToggle("Toggle_Auto_Farm_Berry_Hop", {
-Title = "Auto Farm Berry + Hop", 
+Title = "Tự động Farm Berry + Hop", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -2210,7 +2210,7 @@ end)
 Tabs.Main:AddSection("Farm Mob")
 if World1 then
     Tabs.Main:AddDropdown("Dropdown_Select_Mob", {
-        Title = "Select Mob",
+        Title = "Chọn Mob",
         Default = Bandit,
         Values = {
             "Bandit", "Monkey", "Gorilla", "Pirate", "Brute",
@@ -2228,7 +2228,7 @@ if World1 then
 end
 if World2 then
     Tabs.Main:AddDropdown("Dropdown_Select_Mob_2", {
-        Title = "Select Mob",
+        Title = "Chọn Mob",
         Default = Raider,
         Values = {
             "Raider", "Mercenary", "Swan Pirate", "Factory Staff",
@@ -2245,7 +2245,7 @@ if World2 then
 end
 if World3 then
     Tabs.Main:AddDropdown("Dropdown_Select_Mob_3", {
-        Title = "Select Mob",
+        Title = "Chọn Mob",
         Values = {
             "Pirate Millionaire", "Dragon Crew Warrior", "Dragon Crew Archer",
             "Female Islander", "Giant Islander", "Marine Commodore",
@@ -2265,7 +2265,7 @@ if World3 then
     })
 end
 Tabs.Main:AddToggle("Toggle_Auto_Kill_Mob", {
-    Title = "Auto Kill Mob",
+    Title = "Tự động Kill Mob",
     Default = false,
     Callback = function(Value)
         _G.AutoKillMob = Value
@@ -2538,7 +2538,7 @@ local Sea3_Islands = {
 
 if World1 then
     Tabs.Main:AddDropdown("Dropdown_Select_Island", {
-        Title = "Select Island",
+        Title = "Chọn Island",
         Values = {"Pirates", "Marine", "Jungle", "Pirate Village", "Desert", "Frozen Village", "Marine Fortress", "Skylands Lower", "Prison", "Colosseum", "Magma Village", "Underwater City", "Skylands Upper"},
         Callback = function(Value)
             _G.SelectIsland = Value
@@ -2548,7 +2548,7 @@ end
 
 if World2 then
     Tabs.Main:AddDropdown("Dropdown_Select_Island_2", {
-        Title = "Select Island",
+        Title = "Chọn Island",
         Values = {"Kingdom of Rose", "Green Zone", "Graveyard Island", "Snow Mountain", "Hot and Cold (Cold)", "Hot and Cold (Hot)", "Cursed Ship", "Ice Castle", "Forgotten Island"},
         Callback = function(Value)
             _G.SelectIsland = Value
@@ -2558,7 +2558,7 @@ end
 
 if World3 then
     Tabs.Main:AddDropdown("Dropdown_Select_Island_3", {
-        Title = "Select Island",
+        Title = "Chọn Island",
         Values = {"Port Town", "Hydra Island", "Great Tree", "Floating Turtle", "Haunted Castle", "Sea of Treats", "Tiki Outpost", "Submerged Island"},
         Callback = function(Value)
             _G.SelectIsland = Value
@@ -2574,7 +2574,7 @@ elseif World3 then
     IslandData = Sea3_Islands
 end
 Tabs.Main:AddToggle("Toggle_Auto_Farm_All_Island", {
-    Title = "Auto Farm All Island",
+    Title = "Tự động Farm All Island",
     Default = false,
     Callback = function(Value)
         _G.AutoFarmIsland = Value
@@ -2654,7 +2654,7 @@ spawn(function()
 end)
 
 EliteQ = Tabs.Main:AddToggle("Toggle_Auto_Farm_Elite", {
-    Title = "Auto Farm Elite",
+    Title = "Tự động Farm Elite",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -2724,7 +2724,7 @@ spawn(function()
 end)
 
 EliteH = Tabs.Main:AddToggle("Toggle_Auto_Farm_Elite_Hop", {
-	Title = "Auto Farm Elite + Hop",
+	Title = "Tự động Farm Elite + Hop",
 	Description = "",
 	Default = false,
 	Callback = function(Value)
@@ -2830,7 +2830,7 @@ end)
 Tabs.Main:AddSection("Farm Rip Indra")
 
 Tabs.Main:AddToggle("Toggle_Auto_Attack_Rip_Indra", {
-Title = "Auto Attack Rip Indra", 
+Title = "Tự động đánh Rip Indra", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -2853,7 +2853,7 @@ spawn(function()
 end)
 
 Tabs.Main:AddToggle("Toggle_Auto_Unlocked_Haki", {
-Title = "Auto Unlocked Haki", 
+Title = "Tự động Unlocked Haki", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -2905,7 +2905,7 @@ spawn(function()
 end)
 
 Cake = Tabs.Main:AddToggle("Toggle_Auto_Farm_Cake_Prince", {
-    Title = "Auto Farm Cake Prince",
+    Title = "Tự động Farm kata v1",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -2986,7 +2986,7 @@ end
 
 
 CakeSM = Tabs.Main:AddToggle("Toggle_Auto_Summon_Cake_Prince", {
-    Title = "Auto Summon Cake Prince",
+    Title = "Tự động summon kata v1",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -3012,7 +3012,7 @@ end)
 
 
 Tabs.Main:AddToggle("Toggle_Auto_Dough_King_Fully", {
-    Title = "Auto Dough King [Fully]",
+    Title = "Tự động farm kata v2 [Fully]",
     Default = false,
     Callback = function(Value)
         _G.AutoDoughKing = Value
@@ -3079,7 +3079,7 @@ spawn(function()
     end
 end)
 Tabs.Main:AddToggle("Toggle_Auto_Farm_Dough_King", {
-    Title = "Auto Farm Dough King",
+    Title = "Tự động Farm kata v2",
     Default = false,
     Callback = function(Value)
         _G.AutoAttackDoughKing = Value
@@ -3104,7 +3104,7 @@ spawn(function()
 end)
 
 Tabs.Main:AddToggle("Toggle_Auto_Farm_Dough_King_Hop", {
-    Title = "Auto Farm Dough King + Hop",
+    Title = "Tự động Farm kata v2 + Hop",
     Default = false,
     Callback = function(Value)
         _G.AutoHop_Dough = Value
@@ -3174,7 +3174,7 @@ spawn(function()
 end)
 
 Tabs.Main:AddToggle("Toggle_Auto_Farm_Bone", {
-    Title = "Auto Farm Bone",
+    Title = "Tự động Farm Bone",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -3257,7 +3257,7 @@ end
 
 
 Tabs.Main:AddToggle("Toggle_Auto_Soul_Reaper", {
-Title = "Auto Soul Reaper", 
+Title = "Tự động đánh Soul Reaper", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -3283,7 +3283,7 @@ spawn(function()
   end
 end)
 RanBone = Tabs.Main:AddToggle("Toggle_Auto_Random_Bones", {
-Title = "Auto Random Bones", 
+Title = "Tự động Random Bones", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -3299,7 +3299,7 @@ spawn(function()
   end
 end)
 Lucky = Tabs.Main:AddToggle("Toggle_Auto_Try_Luck_Gravestone", {
-Title = "Auto Try Luck Gravestone", 
+Title = "Tự động Try Luck Gravestone", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -3318,7 +3318,7 @@ spawn(function()
   end
 end)
 Pray = Tabs.Main:AddToggle("Toggle_Auto_Pray_Gravestone", {
-Title = "Auto Pray Gravestone", 
+Title = "Tự động Pray Gravestone", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -3389,7 +3389,7 @@ task.spawn(function()
 end)
 
 FarmTyrant = Tabs.Main:AddToggle("Toggle_Auto_Farm_Boss_TOTS", {
-Title = "Auto Farm Boss TOTS", 
+Title = "Tự động Farm Boss TOTS", 
 Description = "", 
 Default = false,
 Callback = function(Value) 
@@ -3450,7 +3450,7 @@ spawn(function()
 end)
 
 FarmPhaBinh = Tabs.Main:AddToggle("Toggle_Auto_Summon_Boss", {
-Title = "Auto Summon Boss", 
+Title = "Tự động Summon Boss", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -3534,7 +3534,7 @@ end)
 Tabs.Main:AddSection("Farm Material")
 
 Test = Tabs.Main:AddDropdown("Dropdown_Choose_Material", {
-Title = "Choose Material",
+Title = "Chọn Nguyên liệu",
 		Description = "",
 		Values = MaterialList,
 		Callback = function(Value)
@@ -3542,7 +3542,7 @@ Title = "Choose Material",
 		end
 		})
 Toggle = Tabs.Main:AddToggle("Toggle_Auto_Farm_Materials", {
-Title = "Auto Farm Materials", 
+Title = "Tự động Farm Nguyên liệu", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -3582,7 +3582,7 @@ end)
 Tabs.Main:AddSection("Farm Boss")
 
 		BossDropdown = Tabs.Main:AddDropdown("Dropdown_Select_Boss", {
-		Title = "Select Boss",
+		Title = "Chọn Boss",
 		Description = "",
 		Values = BossList,
 		Callback = function(value)
@@ -3591,7 +3591,7 @@ Tabs.Main:AddSection("Farm Boss")
 		})
 
 FarmBoss = Tabs.Main:AddToggle("Toggle_Auto_Farm_Boss", {
-    Title = "Auto Farm Boss",
+    Title = "Tự động Farm Boss",
     Description = "",
     Default = false,
     Callback = function(value)
@@ -3662,7 +3662,7 @@ FarmBoss = Tabs.Main:AddToggle("Toggle_Auto_Farm_Boss", {
 
 
 BossQ = Tabs.Main:AddToggle("Toggle_Accept_Quests_3", {
-    Title = "Accept Quests",
+    Title = "Nhận Quests",
     Description = "",
     Default = true,
     Callback = function(Value)
@@ -3671,7 +3671,7 @@ BossQ = Tabs.Main:AddToggle("Toggle_Accept_Quests_3", {
 })
 
 FarmAllBoss = Tabs.Main:AddToggle("Toggle_Auto_Farm_All_Boss", {
-   Title = "Auto Farm All Boss",
+   Title = "Tự động Farm All Boss",
     Default = false,
 Callback = function(Value)
     _G.AutoFarmAllBoss = Value
@@ -3727,7 +3727,7 @@ end)
 Tabs.Main:AddSection("Farming Mastery")
 local posMastery = {"Cake","Bone"}
 local Mastery_Config = Tabs.Main:AddDropdown("Dropdown_Choose_Island", {
-Title = "Choose Island",
+Title = "Chọn Island",
 		Description = "",
 		Values = posMastery,
 		Default = Bone,
@@ -3735,7 +3735,7 @@ Title = "Choose Island",
   SelectIsland = Value
 end})
 local MasteryFruits = Tabs.Main:AddToggle("Toggle_Auto_Mastery_Fruits", {
-Title = "Auto Mastery Fruits", 
+Title = "Tự động farm Mastery Fruits", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -3774,7 +3774,7 @@ spawn(function()
   end
 end)
 local MasteryGun = Tabs.Main:AddToggle("Toggle_Auto_Mastery_Gun", {
-Title = "Auto Mastery Gun", 
+Title = "Tự động farm Mastery Gun", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -3852,7 +3852,7 @@ spawn(function()
   end
 end)
 local MasterySword = Tabs.Main:AddToggle("Toggle_Auto_Mastery_All_Sword", {
-Title = "Auto Mastery All Sword", 
+Title = "Tự động farm Mastery All Sword", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -3936,7 +3936,7 @@ Callback = function(Value)
   _B = Value
 end})
 Tabs.Settings:AddToggle("Toggle_Auto_Hop_Server_with_time", {
-    Title = "Auto Hop Server with time",
+    Title = "Tự động Hop Server with time",
     Default = false,
     Callback = function(Value)
         _G.AutoHopServer = Value
@@ -3981,7 +3981,7 @@ Tabs.Settings:AddSlider("Slider_Hop_Delay_Minutes", {
     end
 })
 Tabs.Settings:AddToggle("Toggle_Auto_Set_Spawn_Point", {
-    Title = "Auto Set Spawn Point",
+    Title = "Tự động chỉnh Spawn Point",
     Default = false,
     Callback = function(Value)
         getgenv().Set = Value
@@ -3993,7 +3993,7 @@ Tabs.Settings:AddToggle("Toggle_Auto_Set_Spawn_Point", {
     end
 })
 BusuAura = Tabs.Settings:AddToggle("Toggle_Auto_Turn_on_Buso", {
-Title = "Auto Turn on Buso", 
+Title = "Tự động bật haki tay", 
 Description = "", 
 Default = true,
 Callback = function(Value)
@@ -4010,7 +4010,7 @@ spawn(function()
   end
 end)
 Tabs.Settings:AddToggle("Toggle_Auto_Haki_Observation", {
-    Title = "Auto Haki Observation",
+    Title = " Tự động bật Haki Observation",
     Default = false,
     Callback = function(Value)
         getgenv().Observation = Value
@@ -4026,7 +4026,7 @@ spawn(function()
     end
 end)
 RaceV3Aura = Tabs.Settings:AddToggle("Toggle_Auto_Turn_on_Race_V3", {
-Title = "Auto Turn on Race V3", 
+Title = "Tự động bật V3", 
 Description = "", 
 Default = false,
 Flag = "AutoTurnonRaceV3",
@@ -4046,7 +4046,7 @@ spawn(function()
   end
 end)
 RaceV4Aura = Tabs.Settings:AddToggle("Toggle_Auto_Turn_on_Race_V4", {
-Title = "Auto Turn on Race V4", 
+Title = "Tự động bật V4", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4065,7 +4065,7 @@ spawn(function()
 end)
 
 RandomAround = Tabs.Settings:AddToggle("Toggle_Auto_Turn_on_Spin_xyz", {
-Title = "Auto Turn on Spin  xyz", 
+Title = "Tự động bật Spin xyz", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4090,7 +4090,7 @@ spawn(function()
 end)
 
 DisableHitVFX = Tabs.Settings:AddToggle("Toggle_Remove_Hit_VFX", {
-    Title = "Remove Hit VFX",
+    Title = "Xóa Hit VFX",
     Description = "Removes slash and sword visual effects for better visibility",
     Default = false,
     Callback = function(Value)
@@ -4114,7 +4114,7 @@ task.spawn(function()
     end
 end)
 RmvVFX = Tabs.Settings:AddToggle("Toggle_Remove_Death_Respawned_VFX", {
-Title = "Remove Death & Respawned VFX", 
+Title = "Xóa Death & Respawned VFX", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4131,7 +4131,7 @@ spawn(function()
   end
 end)	
 DisblesNotify = Tabs.Settings:AddToggle("Toggle_Disable_Notify", {
-Title = "Disable Notify", 
+Title = "Tắt Notify", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4168,7 +4168,7 @@ Tabs.Settings:AddToggle("Toggle_Anti_AFK", {
 })
 
 Tabs.Settings:AddToggle("Toggle_Auto_Anti_Admin_Join_Server", {
-    Title = "Auto Anti - Admin Join Server",
+    Title = " Anti - Admin Join Server",
     Description = "",
     Default = true,
     Callback = function(Value)
@@ -4230,7 +4230,7 @@ Callback = function(Value)
 end})
 
 StatsUpg = Tabs.Esp:AddToggle("Toggle_Auto_Melee", {
-Title = "Auto Melee", 
+Title = " Melee", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4245,7 +4245,7 @@ spawn(function()
 end)
 
 StatsUpg = Tabs.Esp:AddToggle("Toggle_Auto_Swords", {
-Title = "Auto Swords", 
+Title = " Swords", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4259,7 +4259,7 @@ spawn(function()
   end
 end)
 StatsUpg = Tabs.Esp:AddToggle("Toggle_Auto_Gun", {
-Title = "Auto Gun", 
+Title = " Gun", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4273,7 +4273,7 @@ spawn(function()
   end
 end)
 StatsUpg = Tabs.Esp:AddToggle("Toggle_Auto_Blox_Fruit", {
-Title = "Auto Blox Fruit", 
+Title = " Blox Fruit", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4287,7 +4287,7 @@ spawn(function()
   end
 end)
 StatsUpg = Tabs.Esp:AddToggle("Toggle_Auto_Defense", {
-Title = "Auto Defense", 
+Title = "Tự động Defense", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4304,7 +4304,7 @@ end)
 Tabs.Fish:AddSection("Fishing")
 
 Tabs.Fish:AddDropdown("Dropdown_Select_Fishing_Rod", {
-    Title = "Select Fishing Rod",
+    Title = "Chọn Fishing Rod",
     Description = "",
     Values = {"Fishing Rod", "Gold Rod", "Shark Rod", "Shell Rod", "Treasure Rod"},
     Default = "Fishing Rod",
@@ -4314,7 +4314,7 @@ Tabs.Fish:AddDropdown("Dropdown_Select_Fishing_Rod", {
 })
 
 BaitDropdown = Tabs.Fish:AddDropdown("Dropdown_Select_Bait", {
-    Title = "Select Bait",
+    Title = "Chọn Bait",
     Description = "",
     Values = {"Basic Bait", "Kelp Bait", "Good Bait", "Abyssal Bait", "Frozen Bait", "Epic Bait", "Carnivore Bait"},
     Default = "Basic Bait",
@@ -4329,7 +4329,7 @@ BaitDropdown = Tabs.Fish:AddDropdown("Dropdown_Select_Bait", {
 })
 
 BuyBaitToggle = Tabs.Fish:AddToggle("Toggle_Auto_Buy_Bait", {
-    Title = "Auto Buy Bait",
+    Title = "Tự động mua Bait",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -4357,7 +4357,7 @@ end)
 
 
 FishingToggle = Tabs.Fish:AddToggle("Toggle_Auto_Fishing", {
-    Title = "Auto Fishing",
+    Title = "Tự động Fishing",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -4421,7 +4421,7 @@ end)
 
 
 FishingQ = Tabs.Fish:AddToggle("Toggle_Auto_Quest_Fishing", {
-Title = "Auto Quest Fishing", 
+Title = "Tự động Quest Fishing", 
 Description = "",
 Default = false,
 Callback = function(Value)
@@ -4456,7 +4456,7 @@ end)
 
 
 QuestToggle = Tabs.Fish:AddToggle("Toggle_Auto_Complete_Quest", {
-    Title = "Auto Complete Quest",
+    Title = "Tự động Complete Quest",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -4483,7 +4483,7 @@ end)
 
 
 SellFishToggle = Tabs.Fish:AddToggle("Toggle_Auto_Sell_Fish", {
-    Title = "Auto Sell Fish",
+    Title = "Tự động Sell Fish",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -4510,7 +4510,7 @@ end)
 
 
 SpamSkillZ = Tabs.Fish:AddToggle("Toggle_Auto_Spam_Skill_Z", {
-Title = "Auto Spam Skill Z", 
+Title = "Tự động Spam Skill Z", 
 Description = "",
 Default = false,
 Callback = function(Value)
@@ -4532,7 +4532,7 @@ task.spawn(function()
 end)
 
 TravelDress = Tabs.Quests:AddToggle("Toggle_Auto_Quest_Sea_2", {
-Title = "Auto Quest Sea 2", 
+Title = "Tự động Quest Sea 2", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4567,7 +4567,7 @@ spawn(function()
   end
 end)
 Zou = Tabs.Quests:AddToggle("Toggle_Auto_Quest_Sea_3", {
-Title = "Auto Quest Sea 3", 
+Title = "Tự động Quest Sea 3", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4683,7 +4683,7 @@ end)
 Tabs.Quests:AddSection("Tushita + Yama")
 
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Tushita_Sword", {
-Title = "Auto Tushita Sword", 
+Title = "Tự động lấy Tushita Sword", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4722,7 +4722,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Yama_Sword", {
-Title = "Auto Yama Sword", 
+Title = "Tự động lấy Yama Sword", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4772,7 +4772,7 @@ spawn(function()
     end
 end)
 Tabs.Quests:AddToggle("Toggle_Auto_Skull_Guitar", {
-Title = "Auto Skull Guitar", 
+Title = "Tự động lấy Skull Guitar", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -4949,7 +4949,7 @@ spawn(function()
   end
 end)
 Tabs.Quests:AddToggle("Toggle_Auto_Farm_Material_Skull_Guitar", {
-Title = "Auto Farm Material Skull Guitar", 
+Title = "Tự động Farm Material Skull Guitar", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5017,7 +5017,7 @@ spawn(function()
     end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Get_CDK_Last_Quest", {
-Title = "Auto Get CDK [ Last Quest ]", 
+Title = "Tự động lấy CDK [ Last Quest ]", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5046,7 +5046,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Yama_CDK", {
-Title = "Auto Yama CDK", 
+Title = "Tự động lấy Yama CDK", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5184,7 +5184,7 @@ spawn(function()
 end)
 
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Tushita_CDK", {
-Title = "Auto Tushita CDK", 
+Title = "Tự động lấy Tushita CDK", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5303,7 +5303,7 @@ spawn(function()
 end)
 Tabs.Quests:AddSection("True Triple Katana Sword")
 Tabs.Quests:AddButton({
-Title = "Buy Legendary Sword",
+Title = "Mua Legendary Sword",
 Description = "",
 Callback = function()
   replicated.Remotes.CommF_:InvokeServer("LegendarySwordDealer","1")
@@ -5311,13 +5311,13 @@ Callback = function()
   replicated.Remotes.CommF_:InvokeServer("LegendarySwordDealer","3")
 end})
 Tabs.Quests:AddButton({
-Title = "Buy True Triple Katana Sword", 
+Title = "Tự động lấy True Triple Katana Sword", 
 Description = "",
 Callback = function()
   replicated.Remotes.CommF_:InvokeServer("MysteriousMan","2")
 end})
 Q = Tabs.Quests:AddToggle("Toggle_Tween_to_Legendary_Sword_Dealer", {
-Title = "Tween to Legendary Sword Dealer", 
+Title = "Tele đến Legendary Sword Dealer", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5337,7 +5337,7 @@ end)
 
 Tabs.Quests:AddSection("Pole / God Enal's")
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Pole_V1", {
-Title = "Auto Pole V1", 
+Title = "Tự động lấy Pole V1", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5358,7 +5358,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Pole_V2_Beta", {
-Title = "Auto Pole V2 [Beta]", 
+Title = "Tự động lấy Pole V2 [Beta]", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5392,7 +5392,7 @@ spawn(function()
   end
 end)
 Tabs.Quests:AddToggle("Toggle_Auto_Saw_Sword", {
-Title = "Auto Saw Sword", 
+Title = "Tự động lấy Saw Sword", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5412,7 +5412,7 @@ spawn(function()
 end)
 
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Saber_Sword", {
-Title = "Auto Saber Sword", 
+Title = "Tự động lấy Saber Sword", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5495,7 +5495,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Cybrog", {
-Title = "Auto Cybrog", 
+Title = "Tự động lấy Cybrog", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5514,7 +5514,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Usoap_s_Hat", {
-Title = "Auto Usoap's Hat", 
+Title = "Tự động lấy Usoap's Hat", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5536,7 +5536,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Bisento_V2", {
-Title = "Auto Bisento V2", 
+Title = "Tự động lấy Bisento V2", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5560,7 +5560,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Warden_Sword", {
-Title = "Auto Warden Sword", 
+Title = "Tự động lấy Warden Sword", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5579,7 +5579,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Marine_Coat", {
-Title = "Auto Marine Coat", 
+Title = "Tự động lấy Marine Coat", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5598,7 +5598,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Swan_Coat", {
-Title = "Auto Swan Coat", 
+Title = "Tự động lấy Shark Coat", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5619,7 +5619,7 @@ end)
 
 Tabs.Quests:AddSection("Rengoku Sword")
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Rengoku_Sword", {
-Title = "Auto Rengoku Sword", 
+Title = "Tự động lấy Rengoku Sword", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5638,7 +5638,7 @@ spawn(function()
   end)
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Key_Rengoku", {
-Title = "Auto Key Rengoku", 
+Title = "Tự động lấy Key Rengoku", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5662,7 +5662,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Dragon_Trident", {
-Title = "Auto Dragon Trident", 
+Title = "Tự động lấy Dragon Trident", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5681,7 +5681,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Long_Sword", {
-Title = "Auto Long Sword", 
+Title = "Tự động lấy Long Sword", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5700,7 +5700,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Black_Spikey", {
-Title = "Auto Black Spikey", 
+Title = "Tự động lấy Black Spikey", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5719,7 +5719,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Dark_Blade_V3", {
-Title = "Auto Dark Blade V3", 
+Title = "Tự động lấy Dark Blade V3", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5745,7 +5745,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Midnight_Blade", {
-Title = "Auto Midnight Blade", 
+Title = "Tự động lấy Midnight Blade", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5770,7 +5770,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Darkbeard", {
-Title = "Auto Darkbeard", 
+Title = "Tự động đánh Darkbeard", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5793,7 +5793,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Unlocked_DonSwan", {
-Title = "Auto Unlocked DonSwan", 
+Title = "Tự động Unlocked DonSwan", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5843,7 +5843,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Swan_Glasses", {
-Title = "Auto Swan Glasses", 
+Title = "Tự động lấy Swan Glasses", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5864,7 +5864,7 @@ end)
 
 Tabs.Quests:AddSection("Cavender + Twin Hooks + Bigmom")
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Bigmom", {
-Title = "Auto Bigmom", 
+Title = "Tự động đánh Bigmom", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5883,7 +5883,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Canvendish_Sword", {
-Title = "Auto Canvendish Sword", 
+Title = "Tự động lấy Canvendish Sword", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5902,7 +5902,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Twin_Hooks", {
-Title = "Auto Twin Hooks", 
+Title = "Tự động lấy Twin Hooks", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5923,7 +5923,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Serpent_Bow", {
-Title = "Auto Serpent Bow", 
+Title = "Tự động lấy Serpent Bow", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5940,7 +5940,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Lei_Accessory", {
-Title = "Auto Lei Accessory", 
+Title = "Tự động lấy Lei Accessory", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5961,7 +5961,7 @@ end)
 
 Tabs.Quests:AddSection("Buso/Aura Colours")
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Teleport_Barista_Cousin", {
-Title = "Auto Teleport Barista Cousin", 
+Title = "Tự động Tele đến Barista Cousin", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -5979,13 +5979,13 @@ spawn(function()
   end
 end)
 Tabs.Quests:AddButton({
-Title = "Buy Buso Colors", 
+Title = "Mua Buso Colors", 
 Description = "",
 Callback = function()
   replicated.Remotes.CommF_:InvokeServer("ColorsDealer","2")
 end})
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Rainbow_Colors", {
-Title = "Auto Rainbow Colors", 
+Title = "Tự động lấy Rainbow Colors", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6066,7 +6066,7 @@ end})
 
 Tabs.Quests:AddSection("Instinct / Observation")
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Farm_Observation", {
-Title = "Auto Farm Observation", 
+Title = "Tự động Farm Observation", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6139,7 +6139,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Observation_V2", {
-Title = "Auto Observation V2", 
+Title = "Tự động lấy Observation V2", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6223,7 +6223,7 @@ end)
 
 
 Bartilo = Tabs.Quests:AddToggle("Toggle_Auto_Done_Bartilo_Quest", {
-Title = "Auto Done Bartilo Quest", 
+Title = "Tự động làm Bartilo Quest", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6290,7 +6290,7 @@ spawn(function()
   end
 end)
 CitizenQ = Tabs.Quests:AddToggle("Toggle_Auto_Done_Citizen_Quest", {
-Title = "Auto Done Citizen Quest", 
+Title = "Tự động làm Citizen Quest", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6337,7 +6337,7 @@ spawn(function()
   end
 end)
 Q = Tabs.Quests:AddToggle("Toggle_Auto_Training_Dummy", {
-Title = "Auto Training Dummy", 
+Title = "Tự động đánh Training Dummy", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6370,7 +6370,7 @@ end)
 
 Tabs.Quests:AddSection("Fighting Melee Styles")
 SuperHuman = Tabs.Quests:AddToggle("Toggle_Auto_Superhuman", {
-Title = "Auto Superhuman", 
+Title = "Tự động lấy Superhuman", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6404,7 +6404,7 @@ spawn(function()
   end
 end)
 DeathStep = Tabs.Quests:AddToggle("Toggle_Auto_DeathStep", {
-Title = "Auto DeathStep", 
+Title = "Tự động lấy DeathStep", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6437,7 +6437,7 @@ spawn(function()
   end
 end)
 SharkManV2 = Tabs.Quests:AddToggle("Toggle_Auto_Sharkman_Karate", {
-Title = "Auto Sharkman Karate", 
+Title = "Tự động lấy Sharkman Karate", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6473,7 +6473,7 @@ spawn(function()
   end
 end)
 ElectricClaw = Tabs.Quests:AddToggle("Toggle_Auto_ElectricClaw", {
-Title = "Auto ElectricClaw", 
+Title = "Tự động lấy ElectricClaw", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6497,7 +6497,7 @@ spawn(function()
   end
 end)
 DragonTalon = Tabs.Quests:AddToggle("Toggle_Auto_DragonTalon", {
-Title = "Auto DragonTalon", 
+Title = "Tự động lấy DragonTalon", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6518,7 +6518,7 @@ spawn(function()
   end
 end)
 Godhuman = Tabs.Quests:AddToggle("Toggle_Auto_Godhuman", {
-Title = "Auto Godhuman", 
+Title = "Tự động lấy Godhuman", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6568,7 +6568,7 @@ spawn(function()
   end
 end)
 SanguineArt = Tabs.Quests:AddToggle("Toggle_Auto_SanguineArt", {
-Title = "Auto SanguineArt", 
+Title = "Tự động lấy SanguineArt", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6667,7 +6667,7 @@ spawn(function()
     end
 end)
 Tabs.Race:AddToggle("Toggle_Auto_Find_Mirage_Island", {
-Title = "Auto Find Mirage Island", 
+Title = "Tự động tìm Mirage Island", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6724,7 +6724,7 @@ Tabs.Race:AddToggle("Toggle_Esp_Mirage_Island", {
     end
 })
 Tabs.Race:AddToggle("Toggle_Auto_Tween_To_Mirage_Island", {
-    Title = "Auto Tween To Mirage Island",
+    Title = "Tự động tele đến Mirage Island",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -6746,7 +6746,7 @@ spawn(function()
     end
 end)
 Tabs.Race:AddToggle("Toggle_Auto_Tween_To_Highest_Point", {
-Title = "Auto Tween To Highest Point", 
+Title = "Tự động tele đến điểm cao nhất", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6762,7 +6762,7 @@ spawn(function()
   end
 end)
 Tabs.Race:AddToggle("Toggle_Auto_Collect_Gear", {
-Title = "Auto Collect Gear", 
+Title = "Tự động nhặt Gear", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6806,7 +6806,7 @@ spawn(function()
   end)
 end)
 Tabs.Race:AddToggle("Toggle_Auto_Tween_Advanced_Fruit_Dealer", {
-Title = "Auto Tween Advanced Fruit Dealer", 
+Title = "Tự động tele đến Advanced Fruit Dealer", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6824,7 +6824,7 @@ spawn(function()
   end
 end)
 Tabs.Race:AddToggle("Toggle_Auto_Collect_Mirage_Chest", {
-Title = "Auto Collect Mirage Chest", 
+Title = "Tự động nhặt rương mirage", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6862,7 +6862,7 @@ end)
 
 
 Tabs.Race:AddButton({
-Title = "Talk With Stone", 
+Title = "Nói với đá", 
 Description = "",
 Callback = function()
   replicated:WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("RaceV4Progress","Begin")
@@ -6871,7 +6871,7 @@ Callback = function()
   replicated:WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("RaceV4Progress","Continue")
 end})
 Tabs.Race:AddToggle("Toggle_Auto_Look_At_Moon", {
-Title = "Auto Look At Moon", 
+Title = "Tự động ngắm trăng", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6892,7 +6892,7 @@ task.spawn(function()
 end)
 
 Tabs.Race:AddToggle("Toggle_Look_Moon_Auto_V3", {
-    Title = "Look Moon + Auto V3", 
+    Title = "Ngắm trăng + Tự động V3", 
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -6920,7 +6920,7 @@ end)
 
 Tabs.Race:AddSection("Upgrade Races V2 And V3")
 RaceMink = Tabs.Race:AddToggle("Toggle_Auto_Upgrade_Mink", {
-Title = "Auto Upgrade Mink", 
+Title = "Tự động lấy Mink v2", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -6958,7 +6958,7 @@ spawn(function()
   end
 end)
 RaceHuman = Tabs.Race:AddToggle("Toggle_Auto_Upgrade_Human", {
-Title = "Auto Upgrade Human", 
+Title = "Tự động lấy Human v2", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7005,7 +7005,7 @@ spawn(function()
   end
 end)
 RaceSky = Tabs.Race:AddToggle("Toggle_Auto_Upgrade_Angel", {
-Title = "Auto Upgrade Angel", 
+Title = "Tự động lấy angel v2", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7048,7 +7048,7 @@ spawn(function()
   end
 end)
 RaceFish = Tabs.Race:AddToggle("Toggle_Auto_Upgrade_FishMan", {
-Title = "Auto Upgrade FishMan", 
+Title = "Tự động lấy tộc cá v2", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7098,7 +7098,7 @@ spawn(function()
     end)
 end)
 PullLv = Tabs.Race:AddToggle("Toggle_Auto_Pull_Lever", {
-Title = "Auto Pull Lever", 
+Title = "Tự động gạt cần", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7116,7 +7116,7 @@ spawn(function()
   end
 end)
 Train = Tabs.Race:AddToggle("Toggle_Auto_Train_V4", {
-Title = "Auto Train V4", 
+Title = "Tự động Train V4", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7145,7 +7145,7 @@ spawn(function()
 end)
 
 Tabs.Race:AddButton({
-    Title = "Teleport to Temple of Time",
+    Title = "Tele đến Temple of Time",
     Description = "",
     Callback = function()
         local plr = game:GetService("Players").LocalPlayer
@@ -7163,7 +7163,7 @@ Tabs.Race:AddButton({
     end
 })
 Tabs.Race:AddButton({
-Title = "Teleport to Ancient One", 
+Title = "Tele đến Ancient One", 
 Description = "",
 Callback = function()
         local plr = game:GetService("Players").LocalPlayer
@@ -7186,7 +7186,7 @@ Callback = function()
     end
 })
 Tabs.Race:AddButton({
-Title = "Teleport to Ancient Clock", 
+Title = "Tele đến Ancient Clock", 
 Description = "",
 Callback = function()
         local plr = game:GetService("Players").LocalPlayer
@@ -7213,7 +7213,7 @@ Callback = function()
     end
 })
 Doors = Tabs.Race:AddToggle("Toggle_Auto_Teleport_to_Race_Doors", {
-Title = "Auto Teleport to Race Doors", 
+Title = "Tự động Tele đến Race Doors", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7241,7 +7241,7 @@ spawn(function()
   end
 end)                   
 Trials = Tabs.Race:AddToggle("Toggle_Auto_Complete_Trial_Race", {
-Title = "Auto Complete Trial Race", 
+Title = "Tự động hoàn thành Trial Race", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7334,7 +7334,7 @@ spawn(function()
   end
 end)
 AutoKill = Tabs.Race:AddToggle("Toggle_Auto_Kill_Player_After_Trial", {
-Title = "Auto Kill Player After Trial", 
+Title = "Tự động giết sau khi xong trial", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7358,14 +7358,14 @@ end)
 
 Tabs.Prehistoric:AddSection("Dojo Quest")
 Tabs.Prehistoric:AddButton({
-    Title = "Teleport To Dragon Dojo",
+    Title = "Tele đến Dragon Dojo",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Vector3.new(5661.5322265625, 1013.0907592773438, - 334.9649963378906))
         topos(CFrame.new(5814.42724609375, 1208.3267822265625, 884.5785522460938))
     end
 })
 DojoQ = Tabs.Prehistoric:AddToggle("Toggle_Auto_Dojo_Trainer", {
-Title = "Auto Dojo Trainer", 
+Title = "Tự động lấy đai", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7454,7 +7454,7 @@ spawn(function()
   end
 end)
 BlazeEM = Tabs.Prehistoric:AddToggle("Toggle_Auto_Dragon_Hunter", {
-Title = "Auto Dragon Hunter", 
+Title = " Blaze ember ", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7524,7 +7524,7 @@ GetQuestDracoLevel = function()
   return replicated.Modules.Net:FindFirstChild("RF/InteractDragonQuest"):InvokeServer(unpack(v371))
 end
 Toggle = Tabs.Prehistoric:AddToggle("Toggle_Tween_To_Upgrade_Droco_Trial", {
-Title = "Tween To Upgrade Droco Trial", 
+Title = "Tele đến Upgrade Draco Trial", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7550,7 +7550,7 @@ spawn(function()
   end
 end)
 Toggle = Tabs.Prehistoric:AddToggle("Toggle_Auto_Drago_V1", {
-Title = "Auto Drago (V1)", 
+Title = "Tự động lấy Dragon (V1)", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7575,7 +7575,7 @@ spawn(function()
   end
 end)
 fireflower = Tabs.Prehistoric:AddToggle("Toggle_Auto_Drago_V2", {
-Title = "Auto Drago (V2)", 
+Title = "Tự động lấy Dragon (V2)", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7607,7 +7607,7 @@ spawn(function()
   end
 end)
 Toggle = Tabs.Prehistoric:AddToggle("Toggle_Auto_Drago_V3", {
-Title = "Auto Drago (V3)", 
+Title = "Tự động lấy Dragon (V3)", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7630,7 +7630,7 @@ spawn(function()
   end
 end)
 Toggle = Tabs.Prehistoric:AddToggle("Toggle_Auto_Relic_Drago_Trial_Beta", {
-Title = "Auto Relic Drago Trial [Beta]", 
+Title = "Tự động Relic Drago Trial [Beta]", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7660,7 +7660,7 @@ spawn(function()
   end
 end)
 Toggle = Tabs.Prehistoric:AddToggle("Toggle_Auto_Train_Drago_v4", {
-Title = "Auto Train Drago v4", 
+Title = "Tự động Train Dragon v4", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7688,7 +7688,7 @@ spawn(function()
   end
 end)
 dragoTpVolcano = Tabs.Prehistoric:AddToggle("Toggle_Tween_to_Drago_Trials", {
-Title = "Tween to Drago Trials", 
+Title = "Tele tới Dragon Trials", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7703,7 +7703,7 @@ spawn(function()
   end
 end)
 bdrago = Tabs.Prehistoric:AddToggle("Toggle_Swap_Drago_Race", {
-Title = "Swap Drago Race", 
+Title = "Sang tộc draco", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -7747,7 +7747,7 @@ end)
 Tabs.Prehistoric:AddSection("Volcanic Crafting")
 
 Tabs.Prehistoric:AddButton({
-Title = "Craft Dragonheart", 
+Title = "Chế Dragonheart", 
 Description = "",
 Callback = function()
         local args = {
@@ -7760,7 +7760,7 @@ Callback = function()
 })
 
 Tabs.Prehistoric:AddButton({
-Title = "Craft Dragonstorm", 
+Title = "Chế Dragonstorm", 
 Description = "",
 Callback = function()
         local args = {
@@ -7773,7 +7773,7 @@ Callback = function()
 })
 
 Tabs.Prehistoric:AddButton({
-    Title = "Craft Dino Hood",
+    Title = "Chế Dino Hood",
     Callback = function()
         local args = {
             [1] = "CraftItem",
@@ -7785,7 +7785,7 @@ Tabs.Prehistoric:AddButton({
 })
 
 Tabs.Prehistoric:AddButton({
-    Title = "Craft T-Rex Skull",
+    Title = "Chế T-Rex Skull",
     Callback = function()
         local args = {
             [1] = "CraftItem",
@@ -7810,7 +7810,7 @@ spawn(function()
 end)
 
 Tabs.Prehistoric:AddButton({
-    Title = "Craft Volcanic Magnet",
+    Title = "Chế Volcanic Magnet",
     Callback = function()
         local RF = game:GetService("ReplicatedStorage").Modules.Net["RF/Craft"]
 
@@ -7822,7 +7822,7 @@ Tabs.Prehistoric:AddButton({
 })
 
 Tabs.Prehistoric:AddToggle("Toggle_Craft_Volcanic_Magnet", {
-    Title = "Craft Volcanic Magnet",
+    Title = "Chế Volcanic Magnet",
     Default = false,
     Callback = function(Value)
         getgenv().AutoCraftVolcanic = Value
@@ -7849,7 +7849,7 @@ end)
 
 
 Tabs.Prehistoric:AddToggle("Toggle_Auto_Find_Prehistoric_Island", {
-    Title = "Auto Find Prehistoric Island",
+    Title = "Tự động tìm Prehistoric Island",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -7938,7 +7938,7 @@ spawn(function()
 end)
 
 Tabs.Prehistoric:AddToggle("Toggle_Auto_Start_Prehistoric_Event", {
-    Title = "Auto Start Prehistoric Event",
+    Title = "Tự động bắt đầu Prehistoric Event",
     Default = false,
     Callback = function(Value)
         _G.AutoStartPrehistoric = Value
@@ -7972,7 +7972,7 @@ end)
 
 
 Tabs.Prehistoric:AddToggle("Toggle_Auto_Patch_Prehistoric_Event", {
-    Title = "Auto Patch Prehistoric Event",
+    Title = "Tự động fix lava",
     Description = "",
     Default = false,
     Callback = function(Value)
@@ -8111,7 +8111,7 @@ spawn(function()
     end
 end)
 Vocan = Tabs.Prehistoric:AddToggle("Toggle_Auto_Collect_Dino_Bones", {
-Title = "Auto Collect Dino Bones", 
+Title = "Tự động nhặt xương", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -8131,7 +8131,7 @@ spawn(function()
   end
 end)
 Vocan = Tabs.Prehistoric:AddToggle("Toggle_Auto_Collect_Dragon_Eggs", {
-Title = "Auto Collect Dragon Eggs", 
+Title = "Tự động nhặt trứng rồng", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -8147,7 +8147,7 @@ spawn(function()
   end
 end)
 Toggle = Tabs.Prehistoric:AddToggle("Toggle_Auto_Reset_When_Complete_Volcano", {
-Title = "Auto Reset When Complete Volcano", 
+Title = "Chết khi xong sự kiện volcano", 
 Description = "", 
 Default = false,
 Callback = function(Value)
@@ -8178,7 +8178,7 @@ local ListSeaZone={"Lv 1","Lv 2","Lv 3","Lv 4","Lv 5","Lv 6","Lv Infinite"}
 
 
 Tabs.SeaEvent:AddButton({
-    Title = "Remove Lighting Effect",
+    Title = "Xóa hiệu ứng ánh sáng",
     Callback = function()
         game:GetService("Lighting").BaseAtmosphere:Destroy()
     end
@@ -8207,7 +8207,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end
 end)
 Tabs.SeaEvent:AddSlider("Slider_Ship_Speed", {
-    Title = "Ship Speed",
+    Title = "Tốc độ thuyền",
     Min = 0,
     Max = 1000,
     Rounding = 0,
@@ -8217,7 +8217,7 @@ Tabs.SeaEvent:AddSlider("Slider_Ship_Speed", {
     end
 })
 Tabs.SeaEvent:AddToggle("Toggle_Auto_Press_W", {
-    Title = "Auto Press W",
+    Title = "Tự đi thẳng",
     Default = false,
     Callback = function(Value)
         getgenv().AutoPressW = Value
@@ -8264,7 +8264,7 @@ Tabs.SeaEvent:AddSection("Crafting Items")
 
 
 Tabs.SeaEvent:AddButton({
-Title = "Craft SharkTooth", 
+Title = "Chế răng cá mập", 
 Description = "",
 Callback = function()
         local args = {
@@ -8277,7 +8277,7 @@ Callback = function()
 })
 
 Tabs.SeaEvent:AddButton({
-Title = "Craft TerrorJaw", 
+Title = "Chế vòng cổ cá mập", 
 Description = "",
 Callback = function()
         local args = {
@@ -8290,7 +8290,7 @@ Callback = function()
 })
 
 Tabs.SeaEvent:AddButton({
-Title = "Craft SharkAnchor", 
+Title = "ChếSharkAnchor", 
 Description = "",
 Callback = function()
         local args = {
@@ -8303,7 +8303,7 @@ Callback = function()
 })
 
 Tabs.SeaEvent:AddButton({
-Title = "Craft LeviathanCrown", 
+Title = "Chế vương miện levi", 
 Description = "",
 Callback = function()
         local args = {
