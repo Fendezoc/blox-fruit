@@ -8316,7 +8316,7 @@ Callback = function()
 })
  
 Tabs.SeaEvent:AddButton({
-Title = "Craft LeviathanShield", 
+Title = "Chế khiên levi", 
 Description = "",
 Callback = function()
         local args = {
@@ -8329,7 +8329,7 @@ Callback = function()
 })
 
 Tabs.SeaEvent:AddButton({
-Title = "Craft LeviathanBoat", 
+Title = "Chế LeviathanBoat", 
 Description = "",
 Callback = function()
         local args = {
@@ -8342,7 +8342,7 @@ Callback = function()
 })
 
 Tabs.SeaEvent:AddButton({
-Title = "Craft LegendaryScroll", 
+Title = "Chế LegendaryScroll", 
 Description = "",
 Callback = function()
         local args = {
@@ -8355,7 +8355,7 @@ Callback = function()
 })
 
 Tabs.SeaEvent:AddButton({
-Title = "Craft MythicalScroll", 
+Title = "Chế MythicalScroll", 
 Description = "",
 Callback = function()
         local args = {
@@ -8369,20 +8369,20 @@ Callback = function()
 Tabs.SeaEvent:AddSection("Choose Sea Event")
 
 Q = Tabs.SeaEvent:AddDropdown("Dropdown_Select_Boats", {
-    Title = "Select Boats",
+    Title = "Chọn thuyền",
 	Values = ListSeaBoat,
 	Callback = function(Value)
         _G.SelectedBoat = Value
     end
 })
 Tabs.SeaEvent:AddButton({
-Title = "Buy Boats", 
+Title = "Mua thuyền", 
 Description = "",
 Callback = function()
   replicated.Remotes.CommF_:InvokeServer("BuyBoat",_G.SelectedBoat)
 end})
 Q = Tabs.SeaEvent:AddDropdown("Dropdown_Select_Sea_Level", {
-Title = "Select Sea Level",
+Title = "Chọn Sea Level",
 Values = ListSeaZone,
 Callback = function(Value)
   _G.DangerSc = Value
@@ -10350,7 +10350,7 @@ Tabs.Combat:AddToggle("Toggle_Teleport_To_Select_Players", {
 })
 
 Tabs.Combat:AddToggle("Toggle_Spectate_Select_Players", {
-    Title = "Rình tắms",
+    Title = "Rình tắm",
     Description = "",
     Default = false,
     Callback = function(Value)
