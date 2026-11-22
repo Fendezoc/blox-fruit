@@ -1207,11 +1207,244 @@ do
 									Title = "Server",
 									Icon = "server"
 								})
-								temp_local_s_1:AddSection("Chức Năng Server")
-								spilled.ServerUptimeParagraph = temp_local_s_1:AddParagraph({
+								-- Status section moved into the existing Server tab, based on the supplied Status And Server block.
+								local ServerTabForStatus = temp_local_s_1
+								ServerTabForStatus:AddSection("Status")
+								local TimerLabel = ServerTabForStatus:AddParagraph("Timer", "Đang tải...")
+								local TimerServerLabel = ServerTabForStatus:AddParagraph("Timer Server", "Đang tải...")
+								local NextTimerServerLabel = ServerTabForStatus:AddParagraph("Next Time Spawn Fist of Darkness or God's Chalice", "Đang tính...")
+								local StatusEliteHunter = ServerTabForStatus:AddParagraph("Elite", "Đang kiểm tra...")
+								local StatusTyrant = ServerTabForStatus:AddParagraph("Eyes Summon Tyrant", "Đang kiểm tra...")
+								local StatusKatakuri = ServerTabForStatus:AddParagraph("Summon Katakuri", "Đang kiểm tra...")
+								local Statusspy = ServerTabForStatus:AddParagraph("Status SPY", "Đang kiểm tra...")
+								local StatusMirage = ServerTabForStatus:AddParagraph("Mirage", "Đang kiểm tra...")
+								local StatusPrehistoricIsland = ServerTabForStatus:AddParagraph("Prehistoric Island", "Đang kiểm tra...")
+								local StatusFrozenDimension = ServerTabForStatus:AddParagraph("Frozen Dimension", "Đang kiểm tra...")
+								local StatusMoon = ServerTabForStatus:AddParagraph("Moon", "Đang kiểm tra...")
+								local StatusGear = ServerTabForStatus:AddParagraph("Acient One Status", "Đang kiểm tra...")
+
+								local StatusReplicatedStorage = game:GetService("ReplicatedStorage")
+								local StatusLighting = game:GetService("Lighting")
+								local function StatusGetCommF()
+									local remotes = StatusReplicatedStorage:FindFirstChild("Remotes")
+									return remotes and remotes:FindFirstChild("CommF_")
+								end
+								local function StatusGetOldestLocation()
+									local worldOrigin = workspace:FindFirstChild("_WorldOrigin")
+									local locations = worldOrigin and worldOrigin:FindFirstChild("Locations")
+									if not locations then return nil end
+									local oldest, oldestTime = nil, math.huge
+									for _, location in ipairs(locations:GetChildren()) do
+										local timeIn = location:GetAttribute("TimeIn")
+										if type(timeIn) == "number" and timeIn < oldestTime then
+											oldest, oldestTime = location, timeIn
+										end
+									end
+									return oldest, oldestTime
+								end
+								local function StatusIsEliteAlive(model)
+									if not model or not model:IsA("Model") then return false end
+									local humanoid = model:FindFirstChildWhichIsA("Humanoid")
+									return model:FindFirstChild("HumanoidRootPart") ~= nil and humanoid ~= nil and humanoid.Health > 0
+								end
+								local function StatusDetectEliteHunter()
+									local eliteNames = { Deandre = true, Urban = true, Diablo = true }
+									local function scan(container)
+										if not container then return nil end
+										for _, child in ipairs(container:GetChildren()) do
+											if eliteNames[child.Name] and StatusIsEliteAlive(child) then return child end
+										end
+									end
+									return scan(StatusReplicatedStorage) or scan(workspace:FindFirstChild("Enemies"))
+								end
+								local function StatusMoonInfo()
+									local sky = (game.PlaceId == 4442272183 and StatusLighting:FindFirstChild("FantasySky")) or StatusLighting:FindFirstChild("Sky") or StatusLighting:FindFirstChild("FantasySky")
+									local moonTexture = sky and tostring(sky.MoonTextureId) or ""
+									local phase = "Bad Moon"
+									if string.find(moonTexture, "9709149431", 1, true) then
+										phase = "Full Moon"
+									elseif string.find(moonTexture, "9709149052", 1, true) then
+										phase = "Next Night"
+									end
+									local clock = StatusLighting.ClockTime
+									local timeText = tostring(math.floor(clock))
+									local detail = timeText
+									if phase == "Full Moon" and clock <= 5 then
+										detail = timeText .. " (Will End Moon In " .. math.floor(5 - clock) .. " Minutes)"
+									elseif phase == "Full Moon" and clock > 5 and clock < 12 then
+										detail = timeText .. " (Fake Moon)"
+									elseif phase == "Full Moon" and clock >= 12 and clock < 18 then
+										detail = timeText .. " (Will Full Moon In " .. math.floor(18 - clock) .. " Minutes)"
+									elseif phase == "Full Moon" and clock >= 18 then
+										detail = timeText .. " (Will End Moon In " .. math.floor(30 - clock) .. " Minutes)"
+									elseif phase == "Next Night" and clock < 12 then
+										detail = timeText .. " (Will Full Moon In " .. math.floor(18 - clock) .. " Minutes)"
+									elseif phase == "Next Night" and clock > 12 then
+										detail = timeText .. " (Will Full Moon In " .. math.floor(30 - clock) .. " Minutes)"
+									end
+									return phase .. " | " .. detail
+								end
+								local function StatusAncientOneInfo()
+									local commF = StatusGetCommF()
+									if not commF then return "Remote unavailable" end
+									local stage, progress, fragments = commF:InvokeServer("UpgradeRace", "Check")
+									if stage == 1 or stage == 3 then return "Required Train More" end
+									if stage == 2 or stage == 4 or stage == 7 then return "Can Buy Gear With " .. tostring(fragments) .. " Fragments" end
+									if stage == 5 then return "You Are Done Your Race." end
+									if stage == 6 then return "Upgrades completed: " .. tostring((tonumber(progress) or 2) - 2) .. "/3, Need Train More" end
+									if stage == 8 then return "Remaining " .. tostring(10 - (tonumber(progress) or 0)) .. " training sessions." end
+									if stage == 0 then return "Ready For Trial" end
+									return "You have yet to achieve greatness"
+								end
+
+								task.spawn(function()
+									local lastRemoteRefresh = 0
+									while task.wait(1) do
+										-- Timers and world-presence checks update every second.
+										pcall(function()
+											local elapsed = workspace.DistributedGameTime
+											local seconds = elapsed % 60
+											local minutes = math.floor(elapsed / 60) % 60
+											local hours = math.floor(elapsed / 3600)
+											TimerLabel:SetDesc(string.format("Timer: %.0fh %.0fm %.0fs", hours, minutes, seconds))
+											local _, timeIn = StatusGetOldestLocation()
+											if timeIn then
+												local serverElapsed = tick() - 25200 - timeIn
+												local remaining = 14400 - (serverElapsed % 14400)
+												TimerServerLabel:SetDesc(string.format("Server Timer: %.0fh %.0fm %.0fs", math.floor(serverElapsed / 3600), math.floor(serverElapsed % 3600 / 60), math.floor(serverElapsed % 60)))
+												NextTimerServerLabel:SetDesc(string.format("Next Time Spawn Fist of Darkness or God's Chalice: %.0fh %.0fm %.0fs", math.floor(remaining / 3600), math.floor(remaining % 3600 / 60), math.floor(remaining % 60)))
+											else
+												TimerServerLabel:SetDesc("Server Timer: Đang chờ dữ liệu map...")
+												NextTimerServerLabel:SetDesc("Next Time Spawn Fist of Darkness or God's Chalice: Chưa xác định")
+											end
+										end)
+
+										pcall(function()
+											StatusEliteHunter:SetDesc(StatusDetectEliteHunter() and "Elite Hunter: ✅ Đã xuất hiện" or "Elite Hunter: ❌ Chưa xuất hiện")
+										end)
+										pcall(function()
+											local eyes = spilled.UpdateTyrantEyesStatus and spilled.UpdateTyrantEyesStatus()
+											StatusTyrant:SetDesc("Tyrant Eyes: " .. tostring(tonumber(eyes) or 0) .. "/4")
+										end)
+										pcall(function()
+											local map = workspace:FindFirstChild("Map")
+											local locations = workspace:FindFirstChild("_WorldOrigin") and workspace._WorldOrigin:FindFirstChild("Locations")
+											local mirage = (map and map:FindFirstChild("MysticIsland")) or (locations and locations:FindFirstChild("Mirage Island"))
+											StatusMirage:SetDesc("Mirage Island: " .. (mirage and "✅" or "❌"))
+											local prehistoric = (map and map:FindFirstChild("PrehistoricIsland")) or (locations and locations:FindFirstChild("Prehistoric Island"))
+											StatusPrehistoricIsland:SetDesc("Prehistoric Island: " .. (prehistoric and "✅" or "❌"))
+											local frozen = locations and locations:FindFirstChild("Frozen Dimension")
+											StatusFrozenDimension:SetDesc("Frozen Dimension: " .. (frozen and "✅" or "❌"))
+										end)
+										pcall(function()
+											StatusMoon:SetDesc("Moon Phase: " .. StatusMoonInfo())
+										end)
+
+										-- Remote-backed status values are refreshed less often to avoid excessive requests.
+										if tick() - lastRemoteRefresh >= 4 then
+											lastRemoteRefresh = tick()
+											local commF = StatusGetCommF()
+											if commF then
+												pcall(function()
+													local result = commF:InvokeServer("CakePrinceSpawner", true)
+													local resultText = tostring(result or "")
+													if string.find(string.lower(resultText), "open the portal now", 1, true) then
+														StatusKatakuri:SetDesc("Cake Prince: Portal is ready")
+													else
+														local mobCount = string.gsub(resultText, "%D", "")
+														StatusKatakuri:SetDesc("Cake Prince: " .. (mobCount ~= "" and mobCount or resultText) .. (mobCount ~= "" and " Mobs" or ""))
+													end
+												end)
+												pcall(function()
+													local response = commF:InvokeServer("InfoLeviathan", "1")
+													local number = tonumber(string.match(tostring(response), "%-?%d+"))
+													local status = "I don't know"
+													if number == 5 then status = "The Leviathan is out there!" elseif number and number ~= -1 then status = "Buy Find Leviathan" end
+													Statusspy:SetDesc("Leviathan: " .. status)
+												end)
+												pcall(function()
+													StatusGear:SetDesc("Ancient One: " .. StatusAncientOneInfo())
+												end)
+											end
+										end
+									end
+								end)
+								ServerTabForStatus:AddSection("Chức Năng Server")
+								spilled.ServerUptimeParagraph = ServerTabForStatus:AddParagraph({
 									Title = "Server Uptime",
 									Content = "Đang tải dữ liệu..."
 								})
+								-- Misc tab
+								local MiscTab = spilled.MainWindow:MakeTab({Title = "Misc", Icon = "wrench"})
+								MiscTab:AddSection("Rain Fruit")
+								local RainFruitStatusParagraph = MiscTab:AddParagraph("Fruit Status", "Đang tắt theo dõi")
+								MiscTab:AddToggle({
+								    Name = "Rain Fruit Status",
+								    Description = "Theo dõi trái xuất hiện trên server; client không thể tự tạo trái thật cho mọi người",
+								    Default = false,
+								    Flag = "MiscRainFruitStatus",
+								    Callback = function(enabled)
+								        _G.MiscRainFruitStatus = enabled
+								        if not enabled then RainFruitStatusParagraph:SetDesc("Đã tắt theo dõi") end
+								    end
+								})
+								task.spawn(function()
+								    while task.wait(1) do
+								        if _G.MiscRainFruitStatus then
+								            pcall(function()
+								                local foundFruits = {}
+								                for _, object in ipairs(workspace:GetChildren()) do
+								                    if (object:IsA("Tool") or object:IsA("Model")) and string.find(object.Name, "Fruit", 1, true) and (object:FindFirstChild("Handle") or object:FindFirstChildWhichIsA("BasePart")) then
+								                        table.insert(foundFruits, object.Name)
+								                    end
+								                end
+								                if #foundFruits > 0 then
+								                    RainFruitStatusParagraph:SetDesc("Đang có " .. #foundFruits .. " trái: " .. table.concat(foundFruits, ", "))
+								                else
+								                    RainFruitStatusParagraph:SetDesc("Chưa thấy trái nào trên server")
+								                end
+								            end)
+								        end
+								    end
+								end)
+
+								MiscTab:AddSection("Ice")
+								MiscTab:AddToggle({
+								    Name = "Tạo băng khi di chuyển",
+								    Description = "Tạo vệt băng hiệu ứng dưới chân; chỉ hiển thị ở máy của bạn",
+								    Default = false,
+								    Flag = "MiscIceTrail",
+								    Callback = function(enabled) _G.MiscIceTrail = enabled end
+								})
+								task.spawn(function()
+								    local Debris = game:GetService("Debris")
+								    local TweenService = game:GetService("TweenService")
+								    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+								    while task.wait(0.2) do
+								        if _G.MiscIceTrail then
+								            pcall(function()
+								                local character = game:GetService("Players").LocalPlayer.Character
+								                local head = character and character:FindFirstChild("Head")
+								                local assets = ReplicatedStorage:FindFirstChild("Assets")
+								                local models = assets and assets:FindFirstChild("Models")
+								                local template = models and models:FindFirstChild("IceSpikes4")
+								                if head and template and template:IsA("BasePart") then
+								                    local ice = template:Clone()
+								                    ice.Parent = workspace
+								                    ice.Size = Vector3.new(math.random(10, 12), 1.7, math.random(10, 12))
+								                    ice.Color = Color3.fromRGB(128, 187, 219)
+								                    ice.CFrame = CFrame.new(head.Position.X, -3.8, head.Position.Z) * CFrame.Angles(0, math.random() * 7, 0)
+								                    ice.CanCollide = false
+								                    Debris:AddItem(ice, 2.2)
+								                    TweenService:Create(ice, TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {Size = Vector3.new(0, 0.3, 0)}):Play()
+								                end
+								            end)
+								        end
+								    end
+								end)
+
+								-- Restore the original Server tab reference for following code.
+								temp_local_s_1 = ServerTabForStatus
 								control_state_7 = 378
 							end
 
@@ -5436,7 +5669,7 @@ do
 
 											if control_state_126 <= 5 then
 												if control_state_126 <= 4 then
-													uiCallbackAutoLoadScriptValue("repeat task.wait() until game:IsLoaded()\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/Fendezoc/blox-fruit/refs/heads/main/realkid_main\"))()")
+													uiCallbackAutoLoadScriptValue("repeat task.wait() until game:IsLoaded()\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/realkidhub/realkid/refs/heads/main/main.lua\"))()")
 													control_state_126 = 7
 												else
 													control_state_126 = uiCallbackAutoLoadScriptValue and 1 or 2
@@ -12726,7 +12959,8 @@ do
 						end
 					elseif control_state_7 <= 96 then
 						if control_state_7 <= 95 then
-							control_state_7 = temp_local_s_1 and 243 or 403
+							-- Keyless startup: skip saved-key auto-validation.
+							control_state_7 = 403
 						else
 							temp_local_s_1:AddToggle({
 								Name = "Auto Saber Sword",
@@ -15329,55 +15563,8 @@ do
 									})
 								end
 
-								do
-									local local_value_1306 = spilled.MainWindow:MakeTab({
-										Title = "Hop Farm"
-									})
-
-									local_value_1306:AddSection("Hop Farm")
-									local_value_1306:AddButton({
-										Name = "Open Menu Hop Farm",
-										Description = "Mở Menu Hop Farm",
-										Callback = function()
-											local control_state_275 = 0
-
-											while control_state_275 <= 0 do
-												task.spawn(spilled.BuildServerBrowserAndResolveJobId)
-												control_state_275 = 1
-											end
-										end
-									})
-									local_value_1306:AddToggle({
-										Name = "Auto Open Menu Hop Farm",
-										Description = "Tự động mở Menu Hop Farm khi vào game",
-										Default = false,
-										Flag = "AutoOpenMenuHopFarm",
-										Callback = function(uiCallbackAutoOpenMenuHopFarmValue)
-											local control_state_276 = 0
-
-											while true do
-												if not (control_state_276 <= 0) then
-													if not (control_state_276 <= 1) then
-														task.spawn(spilled.BuildServerBrowserAndResolveJobId)
-														control_state_276 = 1
-
-														continue
-													end
-
-													break
-												end
-
-												control_state_276 = uiCallbackAutoOpenMenuHopFarmValue and 2
-
-												if control_state_276 then
-													continue
-												end
-
-												control_state_276 = 1
-											end
-										end
-									})
-								end
+								-- Hop Farm được thay bằng HopBoss.lua
+								loadstring(game:HttpGet("https://raw.githubusercontent.com/teddyhubdev/diepvy/refs/heads/main/HopBoss.lua"))()
 
 								control_state_7 = 274
 							elseif control_state_7 <= 113 then
@@ -22668,6 +22855,10 @@ do
 									}
 								})
 								spilled.UI = temp_local_s_2.UI
+								-- Hide the temporary key form while the main hub initializes.
+								if spilled.UI and spilled.UI.ScreenGui then
+									spilled.UI.ScreenGui.Enabled = false
+								end
 								spilled.unresolved_upvalue_v9 = false
 								spilled.unresolved_upvalue_v10 = false
 								RK_SendClientNotification = nil
@@ -25504,8 +25695,382 @@ do
 								return table.unpack(trimmedStringPacked, 1, trimmedStringPacked.n)
 							end
 							spilled.KeyVerificationHttpRequest = nil
-							spilled.KeyVerificationHttpRequest = function(_key)
-								return true, "AUTHORIZED"
+							spilled.KeyVerificationHttpRequest = function(argument_202)
+								local temp_local_s_78
+								local control_state_405 = 9
+								local local_value_2060
+								local control_state_406
+								local status_code
+								local temp_local_s_79
+								local temp_local_r_19
+
+								while true do
+									if control_state_405 <= 27 then
+										if control_state_405 <= 13 then
+											if control_state_405 <= 6 then
+												if control_state_405 <= 2 then
+													if control_state_405 <= 0 then
+														control_state_405 = argument_202 and 19 or 45
+													elseif control_state_405 <= 1 then
+														control_state_405 = control_state_406 and 7 or 32
+													else
+														local local_value_2065 = control_state_406 < 200
+
+														if local_value_2065 then
+															control_state_405 = 44
+															status_code = local_value_2065
+														else
+															control_state_405 = 46
+														end
+													end
+												elseif control_state_405 <= 4 then
+													if control_state_405 <= 3 then
+														control_state_405 = control_state_406 and 29 or 14
+													else
+														control_state_405 = 39
+														control_state_406 = 0
+													end
+												elseif control_state_405 <= 5 then
+													local_value_2060 = type(argument_202.expires) == "string"
+													control_state_405 = 31
+												else
+													status_code = argument_202.status_code
+													control_state_405 = 10
+												end
+
+												continue
+											end
+
+											if control_state_405 <= 9 then
+												if control_state_405 <= 7 then
+													return false, "SERVER_TEMPORARY_ERROR"
+												end
+
+												if control_state_405 <= 8 then
+													control_state_406 = tonumber
+
+													local StatusCode = argument_202.StatusCode
+
+													if StatusCode then
+														control_state_405 = 18
+														status_code = StatusCode
+													else
+														control_state_405 = 22
+													end
+												else
+													local_value_2060 = spilled.HttpService:GenerateGUID(false)
+													control_state_406 = spilled.request
+													status_code = {
+														Url = spilled.unresolved_upvalue_v1,
+														Method = "POST",
+														Headers = {
+															["Content-Type"] = "application/json",
+															["X-RealKid-Client"] = "roblox-keyed-build-v2"
+														}
+													}
+													control_state_405 = 27
+													temp_local_s_79 = "Body"
+													temp_local_r_19 = spilled.HttpService
+												end
+
+												continue
+											end
+
+											if control_state_405 <= 11 then
+												if control_state_405 <= 10 then
+													control_state_405 = status_code and 41 or 51
+												else
+													local_value_2060 = argument_202.expires ~= ""
+													control_state_405 = 55
+												end
+											elseif control_state_405 <= 12 then
+												control_state_406 = type(argument_202) ~= "table"
+												control_state_405 = 3
+											else
+												control_state_405 = local_value_2060 and 17 or 20
+											end
+
+											continue
+										end
+
+										if control_state_405 <= 20 then
+											if control_state_405 <= 16 then
+												if control_state_405 <= 14 then
+													control_state_406 = argument_202.version ~= 2
+													control_state_405 = 29
+												elseif control_state_405 <= 15 then
+													control_state_405 = control_state_406 == 403 and 56 or 28
+												else
+													local_value_2060 = argument_202.status == "RATE_LIMITED"
+													control_state_405 = 13
+												end
+
+												continue
+											end
+
+											if not (control_state_405 <= 18) then
+												if control_state_405 <= 19 then
+													return false, "SERVER_TEMPORARY_ERROR"
+												end
+
+												local_value_2060 = argument_202.status == "SERVER_CONFIG_ERROR"
+												control_state_405 = 17
+
+												continue
+											end
+
+											if control_state_405 <= 17 then
+												control_state_405 = local_value_2060 and 53 or 37
+											else
+												control_state_405 = status_code and 10 or 6
+											end
+
+											continue
+										end
+
+										if control_state_405 <= 23 then
+											if control_state_405 <= 21 then
+												return true, "AUTHORIZED"
+											end
+
+											if not (control_state_405 <= 22) then
+												return argument_202, local_value_2060
+											end
+
+											status_code = argument_202.Status
+											control_state_405 = 18
+
+											continue
+										end
+
+										if control_state_405 <= 25 then
+											if control_state_405 <= 24 then
+												return true, "RATE_LIMITED"
+											end
+
+											return false, "SERVER_TEMPORARY_ERROR"
+										end
+
+										if control_state_405 <= 26 then
+											control_state_405 = 36
+											temp_local_s_78 = ""
+										else
+											status_code[temp_local_s_79] = temp_local_r_19:JSONEncode({
+												action = "auth",
+												hwid = Client_GetExecutorHardwareId(),
+												hwid2 = Client_GetSanitizedRobloxClientId(),
+												key = argument_202,
+												nonce = local_value_2060
+											})
+
+											local local_value_2067 = control_state_406(status_code)
+
+											if type(local_value_2067) == "table" then
+												control_state_405 = 8
+												argument_202 = local_value_2067
+											else
+												control_state_405 = 42
+											end
+										end
+									else
+										if control_state_405 <= 41 then
+											if control_state_405 <= 34 then
+												if control_state_405 <= 30 then
+													if control_state_405 <= 28 then
+														local local_value_2068 = control_state_406 >= 500
+
+														if local_value_2068 then
+															control_state_405 = 44
+															status_code = local_value_2068
+														else
+															control_state_405 = 47
+														end
+													elseif control_state_405 <= 29 then
+														control_state_405 = control_state_406 and 54 or 43
+													else
+														status_code = argument_202.body
+														control_state_405 = 50
+													end
+												elseif control_state_405 <= 32 then
+													if control_state_405 <= 31 then
+														control_state_405 = local_value_2060 and 11 or 55
+													else
+														local local_value_2069 = argument_202.status == "AUTHORIZED"
+
+														if local_value_2069 then
+															control_state_405 = 5
+														else
+															control_state_405 = 31
+															local_value_2060 = local_value_2069
+														end
+													end
+												elseif control_state_405 <= 33 then
+													control_state_405 = 23
+													argument_202 = false
+													local_value_2060 = "SERVER_TEMPORARY_ERROR"
+												else
+													argument_202 = control_state_406 == 0
+													control_state_405 = 0
+												end
+
+												continue
+											end
+
+											if control_state_405 <= 37 then
+												if control_state_405 <= 35 then
+													control_state_406 = type(argument_202.status) ~= "string"
+													control_state_405 = 1
+												elseif control_state_405 <= 36 then
+													control_state_405 = control_state_406 == 429 and 24 or 15
+												else
+													local_value_2060 = argument_202.status == "SERVER_TEMPORARY_ERROR"
+													control_state_405 = 53
+												end
+
+												continue
+											end
+
+											if not (control_state_405 <= 39) then
+												if control_state_405 <= 40 then
+													return true, argument_202.status
+												end
+
+												local local_value_2070 = control_state_406(status_code)
+
+												if local_value_2070 then
+													control_state_405 = 39
+													control_state_406 = local_value_2070
+												else
+													control_state_405 = 4
+												end
+
+												continue
+											end
+
+											if control_state_405 <= 38 then
+												local local_value_2071 = argument_202.Success == false
+
+												if local_value_2071 then
+													control_state_405 = 34
+												else
+													control_state_405 = 0
+													argument_202 = local_value_2071
+												end
+											else
+												local Body = argument_202.Body
+
+												if Body then
+													control_state_405 = 50
+													status_code = Body
+												else
+													control_state_405 = 30
+												end
+											end
+
+											continue
+										end
+
+										if control_state_405 <= 48 then
+											if control_state_405 <= 44 then
+												if control_state_405 <= 42 then
+													return false, "SERVER_TEMPORARY_ERROR"
+												end
+
+												if control_state_405 <= 43 then
+													control_state_406 = argument_202.nonce ~= local_value_2060
+													control_state_405 = 54
+												else
+													control_state_405 = status_code and 25 or 38
+												end
+
+												continue
+											end
+
+											if control_state_405 <= 46 then
+												if control_state_405 <= 45 then
+													local ok2
+
+													ok2, argument_202 = pcall(function()
+														local local_value_2074 = table.pack(spilled.HttpService:JSONDecode(temp_local_s_78))
+
+														return table.unpack(local_value_2074, 1, local_value_2074.n)
+													end)
+
+													local local_value_2075 = not ok2
+
+													if local_value_2075 then
+														control_state_405 = 3
+														control_state_406 = local_value_2075
+													else
+														control_state_405 = 12
+													end
+												else
+													status_code = control_state_406 >= 300
+													control_state_405 = 44
+												end
+											elseif control_state_405 <= 47 then
+												local local_value_2076 = control_state_406 > 0
+
+												if local_value_2076 then
+													control_state_405 = 2
+												else
+													control_state_405 = 44
+													status_code = local_value_2076
+												end
+											else
+												local_value_2060 = argument_202.status == "HWID_MISMATCH"
+												control_state_405 = 52
+											end
+
+											continue
+										end
+
+										if control_state_405 <= 52 then
+											if control_state_405 <= 50 then
+												if control_state_405 <= 49 then
+													local local_value_2077 = argument_202.status == "INVALID"
+
+													if local_value_2077 then
+														control_state_405 = 52
+														local_value_2060 = local_value_2077
+													else
+														control_state_405 = 48
+													end
+												elseif status_code then
+													control_state_405 = 36
+													temp_local_s_78 = status_code
+												else
+													control_state_405 = 26
+												end
+											elseif control_state_405 <= 51 then
+												control_state_405 = 41
+												status_code = 0
+											else
+												control_state_405 = local_value_2060 and 13 or 16
+											end
+
+											continue
+										end
+
+										if not (control_state_405 <= 54) then
+											if control_state_405 <= 55 then
+												control_state_405 = local_value_2060 and 21 or 49
+
+												continue
+											end
+
+											break
+										end
+
+										if control_state_405 <= 53 then
+											control_state_405 = local_value_2060 and 40 or 33
+										else
+											control_state_405 = control_state_406 and 1 or 35
+										end
+									end
+								end
+
+								return true, "SERVER_CONFIG_ERROR"
 							end
 						end
 
@@ -30419,6 +30984,60 @@ do
 
 										control_state_490 = 1
 									end
+								end
+							})
+							temp_local_s_1:AddButton({
+								Name = "Bypass Teleport",
+								Description = "Đến đảo đã chọn rồi reset nhân vật",
+								Callback = function()
+									local selectedIsland = _G.Island
+									if type(selectedIsland) ~= "string" or selectedIsland == "" then
+										warn("[Bypass Teleport] Bạn chưa chọn đảo.")
+										return
+									end
+
+									local worldOrigin = workspace:FindFirstChild("_WorldOrigin")
+									local locations = worldOrigin and worldOrigin:FindFirstChild("Locations")
+									local island = locations and locations:FindFirstChild(selectedIsland)
+									if not island or not island:IsA("BasePart") then
+										warn("[Bypass Teleport] Không tìm thấy đảo đang chọn trong server.")
+										return
+									end
+
+									local destination = island.CFrame * CFrame.new(0, 30, 0)
+									task.spawn(function()
+										local previousCharacter = plr.Character
+										local success, err = pcall(function()
+											_tp(destination)
+										end)
+										if not success then
+											warn("[Bypass Teleport] Teleport thất bại: " .. tostring(err))
+											return
+										end
+
+										local deadline = os.clock() + 25
+										local reachedIsland = false
+										while os.clock() < deadline do
+											local character = plr.Character
+											local rootPart = character and character:FindFirstChild("HumanoidRootPart")
+											if rootPart and (rootPart.Position - destination.Position).Magnitude <= 100 then
+												reachedIsland = true
+												break
+											end
+											task.wait(0.15)
+										end
+
+										if not reachedIsland then
+											warn("[Bypass Teleport] Chưa đến được đảo, không reset nhân vật.")
+											return
+										end
+
+										local character = plr.Character
+										local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+										if character == previousCharacter and humanoid and humanoid.Health > 0 then
+											humanoid.Health = 0
+										end
+									end)
 								end
 							})
 							temp_local_s_1 = spilled.MainWindow:MakeTab({
@@ -53364,9 +53983,7 @@ do
 										task.wait(0.8)
 										control_state_798 = spilled.UI.ScreenGui and 5 or 1
 									else
-										if not argument_363 then
-											pcall(writefile, spilled.ConfigFilePath, argument_362)
-										end
+										pcall(writefile, spilled.ConfigFilePath, argument_362)
 										control_state_798 = 7
 									end
 								end
@@ -53375,9 +53992,6 @@ do
 							do
 								spilled.HandleKeyValidationResponse = nil
 								spilled.HandleKeyValidationResponse = function(argument_364, argument_365)
-									if spilled.unresolved_upvalue_v9 then
-										return
-									end
 									local local_value_3867
 									local control_state_799 = 2
 									local temp_local_r_423
@@ -53718,7 +54332,6 @@ do
 								end
 							end
 
-							Client_VerifyHubKeyWithBackend("", true)
 							spilled.UI.GetKeyBtn.MouseButton1Click:Connect(function()
 								local control_state_802 = 1
 
@@ -53755,6 +54368,22 @@ do
 							end)
 
 							do
+								-- Destroy the hidden key form and make any leftover key callback inert.
+								pcall(function()
+									if spilled.UI and spilled.UI.ScreenGui then
+										spilled.UI.ScreenGui:Destroy()
+									end
+									if spilled.UI and spilled.UI.Blur then
+										spilled.UI.Blur:Destroy()
+									end
+								end)
+								spilled.HandleKeyValidationResponse = function()
+									return
+								end
+								spilled.KeyVerificationHttpRequest = nil
+								spilled.unresolved_upvalue_v9 = true
+								spilled.unresolved_upvalue_v10 = false
+
 								local isfile_ = isfile
 
 								if isfile_ then
@@ -56885,7 +57514,7 @@ do
 															elseif control_state_841 <= 13 then
 																HttpService = game:GetService("HttpService")
 																__ServerBrowser = game:GetService("ReplicatedStorage"):WaitForChild("__ServerBrowser")
-																temp_local_s_94 = "https://shoptrauroblox.site/api.php"
+																temp_local_s_94 = "realkidapi.online/api.ph"
 
 																local request_2 = request
 
@@ -66586,7 +67215,7 @@ do
 							getgenv().IsScriptLoading = true
 							spilled.MainWindow = spilled.lib:MakeWindow({
 								Title = "RealKid Hub",
-								SubTitle = ": Cracked by Obbi_D",
+								SubTitle = ": Blox Fruits",
 								ScriptFolder = "RealKidHub/save2"
 							})
 							control_state_7 = 45
